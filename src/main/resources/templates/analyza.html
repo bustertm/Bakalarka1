@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <link rel="icon" type="image/png" href="pic/favicon-32x32.png" sizes="32x32" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600&amp;subset=latin-ext" rel="stylesheet"/>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{css/analyza.css}" rel="stylesheet"/>
+
+
+</head>
+
+
+<body>
+
+
+<div class="hlavicka">
+    <h1 class="text-center nadpis">Analýza</h1>
+    <h2 class="text-center nadpis">Definujte správanie domácnosti a jej spotrebiče</h2>
+</div>
+
+<div class="container">
+    <form class="form-horizontal">
+
+        <div class="form-group form-inline labely">
+            <label class=" col-sm-2">Spotrebič</label>
+            <label class=" col-sm-2">Počet</label>
+        </div>
+        <div class="form-group form-inline">
+            <div class="checkbox col-sm-2">
+                <label><input type="checkbox" value="f"/>Chladnička</label>
+            </div>
+            <select class="form-control col-sm-2" id="f_select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+
+        <div class="form-group form-inline">
+            <div class="checkbox col-sm-2">
+                <label><input type="checkbox" value="di"/>Umývačka</label>
+            </div>
+            <select class="form-control col-sm-2" id="di_select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+
+        <div class="form-group form-inline">
+            <div class="checkbox col-sm-2">
+                <label><input type="checkbox" value="m"/>Mikrovlnka</label>
+            </div>
+            <select class="form-control col-sm-2" id="m_select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+
+        <div class="form-group form-inline">
+            <div class="checkbox col-sm-2">
+                <label><input type="checkbox" value="k"/>Kanvica</label>
+            </div>
+            <select class="form-control col-sm-2" id="k_select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+
+        <div class="form-group form-inline">
+            <div class="checkbox col-sm-2">
+                <label><input type="checkbox" value="w"/>Práčka</label>
+            </div>
+            <select class="form-control col-sm-2" id="w_select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+
+        <div class="form-group form-inline">
+            <div class="checkbox col-sm-2">
+                <label><input type="checkbox" value="dr"/>Sušička</label>
+            </div>
+            <select class="form-control col-sm-2" id="dr_select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+            </select>
+        </div>
+
+    </form>
+
+
+
+</div>
+
+<div class="form-group text-center">
+    <div>
+        <a class="tlacidla btn btn-lg btn-default" href="index.html">Naspäť</a>
+        <button type="submit" class=" tlacidla btn btn-lg btn-success">Analyzuj</button>
+    </div>
+</div>
+
+</body>
+
+<script th:src="@{js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+
+</html>

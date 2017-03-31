@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <link rel="icon" type="image/png" href="pic/favicon-32x32.png" sizes="32x32" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600&amp;subset=latin-ext" rel="stylesheet"/>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{css/registracia.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="reg-blok">
+    <form autocomplete="off" action="#" th:action="@{/registracia}"
+          th:object="${user}" method="post" class="form-horizontal col-sm-offset-2"
+          role="form">
+
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                   class="validation-message"></label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control" th:field="*{email}" placeholder="Email slúžiaci ako prihl. meno"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                   class="validation-message"></label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Meno"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                      class="validation-message"></label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" th:field="*{lastName}" placeholder="Priezvisko"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                   class="validation-message"></label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" th:field="*{password}" placeholder="Heslo"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="btn-group-lg col-sm-6">
+                <a class="btn btn-default col-sm-offset-4 " href="index.html">Naspäť</a>
+                <button type="submit" class="btn btn-success col-sm-offset-2">Registruj</button>
+            </div>
+        </div>
+
+
+        <span th:utext="${successMessage}"></span>
+
+    </form>
+</div>
+
+
+</body>
+</html>
