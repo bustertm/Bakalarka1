@@ -1,0 +1,33 @@
+html,body{
+    font-family: 'Source Sans Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  //  background: #95BFA4;
+    font-size: medium;
+   background: url('../pic/analyse_background.jpg')no-repeat center center fixed;
+
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+}
+
+
+.labely{
+    margin-top: 10px;
+}
+
+
+
+
+.container{
+  //  background: rgba(217,188,102,0.6);
+    background: rgba(149,191,164,0.7);
+    border-radius: 10px;
+}
+
+.tlacidla{
+    border-width: 2px;
+    border-color: gray;
+    margin: 20px 10px;
+}
+
