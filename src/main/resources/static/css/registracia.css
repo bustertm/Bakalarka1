@@ -1,0 +1,29 @@
+html,body{
+    height:100vh;
+    font-family: 'Source Sans Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+
+    background-image: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            color-stop(0, #478A2D),
+            color-stop(0.48, #DAF291)
+    );
+    background-image: -o-linear-gradient(bottom, #478A2D 0%, #DAF291 48%);
+    background-image: -moz-linear-gradient(bottom, #478A2D 0%, #DAF291 48%);
+    background-image: -webkit-linear-gradient(bottom, #478A2D 0%, #DAF291 48%);
+    background-image: -ms-linear-gradient(bottom, #478A2D 0%, #DAF291 48%);
+    background-image: linear-gradient(to bottom, #478A2D 0%, #DAF291 48%);
+}
+
+.form-horizontal{
+    padding-top: 5%;
+}
+.form-group{
+    padding-top: 10px;
+}
+
+.reg-blok{
+    font-size: medium;
+}

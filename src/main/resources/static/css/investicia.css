@@ -1,0 +1,12 @@
+html,body{
+    font-family: 'Source Sans Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+
+    font-size: medium;
+    background: url('../pic/invest_background.jpg')no-repeat center center fixed;
+
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
+}
