@@ -1,6 +1,7 @@
 package com.bakalarka1.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Martin on 30.03.2017.
@@ -8,12 +9,25 @@ import javax.persistence.*;
 @Entity
 @Table(name = "role")
 public class Role {
+
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="role_id")
+    @Column(name="id")
     private int id;
     @Column(name="role")
     private String role;
+
+
+    @OneToMany(mappedBy = "role")
+    private Set<User> users;
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
 
     public int getId() {
         return id;
