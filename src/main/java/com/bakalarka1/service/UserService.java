@@ -1,5 +1,7 @@
 package com.bakalarka1.service;
 
+import com.bakalarka1.model.Appliance;
+import com.bakalarka1.model.Household;
 import com.bakalarka1.model.User;
 
 /**
@@ -10,5 +12,5 @@ public interface UserService {
     public void saveUser(User user);
 
 
-    public void addHousehold(User user);
+    public void addHousehold(User user, Household household, Appliance appliance);
 }

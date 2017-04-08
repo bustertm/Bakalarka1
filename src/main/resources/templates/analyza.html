@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8"/>
@@ -22,95 +22,161 @@
 </div>
 
 <div class="container">
-    <form class="form-horizontal">
+    <form autocomplete="off" action="#" th:action="@{/analyza}"
+           method="post" class="form-vertical col-sm-12" role="form">
 
-        <div class="form-group form-inline labely">
-            <label class=" col-sm-2">Spotrebič</label>
-            <label class=" col-sm-2">Počet</label>
-        </div>
-        <div class="form-group form-inline">
-            <div class="checkbox col-sm-2">
-                <label><input type="checkbox" value="f"/>Chladnička</label>
-            </div>
-            <select class="form-control col-sm-2" id="f_select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
 
-        <div class="form-group form-inline">
-            <div class="checkbox col-sm-2">
-                <label><input type="checkbox" value="di"/>Umývačka</label>
-            </div>
-            <select class="form-control col-sm-2" id="di_select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
+        <div th:object="${household}" class=" form-horizontal col-md-offset-1 labely col-sm-4">
 
-        <div class="form-group form-inline">
-            <div class="checkbox col-sm-2">
-                <label><input type="checkbox" value="m"/>Mikrovlnka</label>
+            <div class="form-group ">
+                <label th:for="*{house_type}">Typ domácnosti</label>
+
+                <select class="form-control" th:field="*{house_type}">
+                    <option th:value="1">Rekreačné obydlie</option>
+                    <option th:value="2">Rodinný dom</option>
+                </select>
             </div>
-            <select class="form-control col-sm-2" id="m_select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
+
+            <div class="form-group ">
+                <label th:for="*{heat_type}">Typ kúrenia</label>
+
+                <select class="form-control" th:field="*{heat_type}">
+                    <option th:value="1">Elektrické</option>
+                    <option th:value="2">Iné</option>
+                </select>
+            </div>
+
+            <div class="form-group ">
+                <label th:for="*{overall}">Spotreba (kWh/rok):</label>
+                <input type="number" min="0" class="form-control" th:field="*{overall}">
+            </div>
+
+            <div class="form-group ">
+                <label th:for="*{residents}"">Počet členov:</label>
+                <input type="number" min="1" class="form-control" th:field="*{residents}">
+            </div>
+
         </div>
 
-        <div class="form-group form-inline">
-            <div class="checkbox col-sm-2">
-                <label><input type="checkbox" value="k"/>Kanvica</label>
+
+        <div th:object="${appliance}" class="form-horizontal labely col-sm-offset-1 col-sm-5">
+
+            <div class="form-group form-inline">
+                <label class="col-sm-4">Spotrebič</label>
+                <label >Počet</label>
             </div>
-            <select class="form-control col-sm-2" id="k_select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
+
+            <div class="form-group form-inline ">
+
+                <label th:for="*{fridge}" class="col-sm-4">Chladnička</label>
+
+                <select th:field="*{fridge}" class="form-control ">
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline ">
+
+                <label th:for="*{dishwasher}" class="col-sm-4">Umývačka</label>
+
+                <select th:field="*{dishwasher}" class="form-control" >
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline ">
+                <label th:for="*{microwave}" class="col-sm-4">Mikrovlnka</label>
+
+                <select th:field="*{microwave}" class="form-control" >
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline ">
+                <label th:for="*{oven}" class="col-sm-4">Sporák</label>
+
+                <select th:field="*{oven}" class="form-control">
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline ">
+                <label th:for="*{washingmachine}" class="col-sm-4">Práčka</label>
+
+                <select th:field="*{washingmachine}" class="form-control" >
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline ">
+                <label th:for="*{dryer}" class="col-sm-4">Sušička</label>
+
+                <select th:field="*{dryer}" class="form-control" >
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline ">
+                <label th:for="*{boiler}" class="col-sm-4">Bojler</label>
+
+                <select th:field="*{boiler}" class="form-control" >
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline ">
+                <label th:for="*{aircondition}" class="col-sm-4">Klimatizácia</label>
+
+                <select th:field="*{aircondition}" class="form-control" >
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                </select>
+            </div>
+
+            <div class="form-group form-inline ">
+                <label th:for="*{yakuza}" class="col-sm-4">Vírivka</label>
+
+                <select th:field="*{yakuza}" class="form-control" >
+                    <option th:value="0">0</option>
+                    <option th:value="1">1</option>
+                    <option th:value="2">2</option>
+                </select>
+            </div>
+
+
         </div>
 
-        <div class="form-group form-inline">
-            <div class="checkbox col-sm-2">
-                <label><input type="checkbox" value="w"/>Práčka</label>
-            </div>
-            <select class="form-control col-sm-2" id="w_select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
-        </div>
 
-        <div class="form-group form-inline">
-            <div class="checkbox col-sm-2">
-                <label><input type="checkbox" value="dr"/>Sušička</label>
+
+
+        <div class="form-group text-center">
+            <div>
+                <a class="tlacidla btn btn-lg btn-default" href="index.html">Naspäť</a>
+                <button type="submit" class=" tlacidla btn btn-lg btn-success">Analyzuj</button>
             </div>
-            <select class="form-control col-sm-2" id="dr_select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-            </select>
         </div>
 
     </form>
 
+    <span th:utext="${successMessage}"></span>
 
 
-</div>
 
-<div class="form-group text-center">
-    <div>
-        <a class="tlacidla btn btn-lg btn-default" href="index.html">Naspäť</a>
-        <button type="submit" class=" tlacidla btn btn-lg btn-success">Analyzuj</button>
-    </div>
 </div>
 
 </body>

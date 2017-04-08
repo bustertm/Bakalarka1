@@ -10,3 +10,19 @@ html,body{
     -o-background-size: 100% auto;
     background-size: 100% auto;
 }
+
+.map{
+    display: block;
+    margin: 3% auto 15px auto;
+}
+
+.policko{
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    background: RGBA(0,0,0,0.7);
+    padding: 20px;
+    margin: 15px 30%;
+    min-width: 20%;
+    max-width: 40%;
+}

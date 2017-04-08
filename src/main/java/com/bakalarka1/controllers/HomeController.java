@@ -46,12 +46,7 @@ public class HomeController {
 
     }
 
-    @RequestMapping(value={"/home"}, method = RequestMethod.GET)
-    public ModelAndView logged(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
-        return modelAndView;
-    }
+
 
     @RequestMapping(value={"/investicia"}, method = RequestMethod.GET)
     public ModelAndView investicia(){
@@ -66,12 +61,12 @@ public class HomeController {
   //      return "analyza";
   //  }
 
-    @RequestMapping(value="/analyza", method = RequestMethod.GET)
+   /* @RequestMapping(value="/analyza", method = RequestMethod.GET)
         public ModelAndView analyza(){
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("analyza");
             return modelAndView;
-    }
+    }*/
 
     /*******************************************************************/
 

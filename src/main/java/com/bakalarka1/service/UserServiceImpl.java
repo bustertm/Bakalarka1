@@ -3,6 +3,10 @@ package com.bakalarka1.service;
 import java.util.Arrays;
 import java.util.HashSet;
 
+import com.bakalarka1.model.Appliance;
+import com.bakalarka1.model.Household;
+import com.bakalarka1.repository.ApplianceRepository;
+import com.bakalarka1.repository.HouseholdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +24,10 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private ApplianceRepository applianceRepository;
+    @Autowired
+    private HouseholdRepository householdRepository;
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
@@ -40,7 +48,12 @@ public class UserServiceImpl implements UserService{
 
     }
 
-    public void addHousehold(User user){
+    public void addHousehold(User user, Household household, Appliance appliance){
+        household.setUser(user);
+        household.setAppliance(appliance);
+        householdRepository.save(household);
+        applianceRepository.save(appliance);
+
 
     }
 
