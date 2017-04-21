@@ -1,5 +1,6 @@
 package com.bakalarka1.repository;
 
+import com.bakalarka1.model.Household;
 import com.bakalarka1.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -13,19 +13,24 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "example_consumption")
-public class example_consumption {
-
-
+public class Example_consumption {
 
     @Id
-    @Column(name = "household_id")
+    @Column(name = "id")
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "household_id")
+    private Example_type type;
 
     @Column(name = "date")
     private java.sql.Date date;
 
+
     @Column(name="oven")
     private double oven;
+    @Column(name="dishwasher")
+    private double dishwasher;
     @Column(name="fridge")
     private double fridge;
     @Column(name="microwave")
@@ -43,8 +48,54 @@ public class example_consumption {
     @Column(name="overall")
     private double overall;
 
-    public int getId() {
-        return id;
+
+
+    public Example_type getType() {
+        return type;
+    }
+
+    public void setType(Example_type Example_type) {
+        this.type = Example_type;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setOven(double oven) {
+        this.oven = oven;
+    }
+
+    public void setFridge(double fridge) {
+        this.fridge = fridge;
+    }
+
+    public void setMicrowave(double microwave) {
+        this.microwave = microwave;
+    }
+
+    public void setBoiler(double boiler) {
+        this.boiler = boiler;
+    }
+
+    public void setDryer(double dryer) {
+        this.dryer = dryer;
+    }
+
+    public void setWashingmachine(double washingmachine) {
+        this.washingmachine = washingmachine;
+    }
+
+    public void setYakuza(double yakuza) {
+        this.yakuza = yakuza;
+    }
+
+    public void setAircondition(double aircondition) {
+        this.aircondition = aircondition;
+    }
+
+    public void setOverall(double overall) {
+        this.overall = overall;
     }
 
     public Date getDate() {

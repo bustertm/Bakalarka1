@@ -56,6 +56,8 @@
                 <input type="number" min="1" class="form-control" th:field="*{residents}">
             </div>
 
+
+
         </div>
 
 
@@ -162,6 +164,8 @@
         </div>
 
 
+        <input th:field="${household.appliance}" type="hidden">
+        <input th:field="${appliance.household}" type="hidden">
 
 
         <div class="form-group text-center">

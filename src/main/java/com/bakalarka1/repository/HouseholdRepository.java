@@ -1,6 +1,7 @@
 package com.bakalarka1.repository;
 
 import com.bakalarka1.model.Household;
+import org.hibernate.event.spi.SaveOrUpdateEventListener;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

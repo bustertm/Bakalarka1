@@ -1,43 +1,55 @@
-package com.bakalarka1.model;
+package com.bakalarka1.model.consumption;
 
 import javax.persistence.*;
+import java.sql.Blob;
+import java.util.List;
+import java.util.Set;
 
 /**
- * Created by Martin on 07.04.2017.
+ * Created by Martin on 03.04.2017.
  */
 @Entity
-@Table(name= "appliance")
-public class Appliance {
-
+@Table(name = "example_type")
+public class Example_type {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "oven")
+    @OneToMany(mappedBy = "type")
+    private List<Example_consumption> example_consumptions;
+
+    @Column(name="oven")
     private Integer oven;
-    @Column(name = "dishwasher")
-    private Integer dishwasher;
-    @Column(name = "fridge")
+    @Column(name="fridge")
     private Integer fridge;
-    @Column(name = "microwave")
+    @Column(name="dishwasher")
+    private Integer dishwasher;
+    @Column(name="microwave")
     private Integer microwave;
-    @Column(name = "boiler")
+    @Column(name="boiler")
     private Integer boiler;
-    @Column(name = "dryer")
+    @Column(name="dryer")
     private Integer dryer;
-    @Column(name = "washingmachine")
+    @Column(name="washingmachine")
     private Integer washingmachine;
-    @Column(name = "yakuza")
+    @Column(name="yakuza")
     private Integer yakuza;
-    @Column(name = "aircondition")
+    @Column(name="aircondition")
     private Integer aircondition;
+    @Column(name="overall_consumption")
+    private Double overall;
 
 
-    @OneToOne
-    @JoinColumn(name = "household_id")
-    private Household household;
+
+    public Double getOverall() {
+        return overall;
+    }
+
+    public void setOverall(Double overall) {
+        this.overall = overall;
+    }
+
 
 
     public int getId() {
@@ -48,6 +60,8 @@ public class Appliance {
         this.id = id;
     }
 
+
+
     public Integer getOven() {
         return oven;
     }
@@ -56,20 +70,20 @@ public class Appliance {
         this.oven = oven;
     }
 
-    public Integer getDishwasher() {
-        return dishwasher;
-    }
-
-    public void setDishwasher(Integer dishwasher) {
-        this.dishwasher = dishwasher;
-    }
-
     public Integer getFridge() {
         return fridge;
     }
 
     public void setFridge(Integer fridge) {
         this.fridge = fridge;
+    }
+
+    public Integer getDishwasher() {
+        return dishwasher;
+    }
+
+    public void setDishwasher(Integer dishwasher) {
+        this.dishwasher = dishwasher;
     }
 
     public Integer getMicrowave() {
@@ -118,13 +132,5 @@ public class Appliance {
 
     public void setAircondition(Integer aircondition) {
         this.aircondition = aircondition;
-    }
-
-    public Household getHousehold() {
-        return household;
-    }
-
-    public void setHousehold(Household household) {
-        this.household = household;
     }
 }

@@ -38,6 +38,8 @@ public class User {
     @Column(name = "last_name")
     @NotEmpty(message = "*Please provide your last name")
     private String lastName;
+    @Column(name="analysed")
+    private Boolean analysed;
     @Column(name = "active")
     private int active;
 
@@ -49,7 +51,7 @@ public class User {
         return role;
     }
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user" ,cascade = CascadeType.ALL, orphanRemoval = true)
     private Household household;
 
 
@@ -112,4 +114,15 @@ public class User {
     }
 
 
+    public Boolean getAnalysed() {
+        return analysed;
+    }
+
+    public void setAnalysed(Boolean analysed) {
+        this.analysed = analysed;
+    }
+
+    public void setHousehold(Household household) {
+        this.household = household;
+    }
 }

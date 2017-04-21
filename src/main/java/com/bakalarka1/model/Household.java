@@ -41,8 +41,7 @@ public class Household{
     private Location location;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "appliance_id")
+    @OneToOne(mappedBy = "household", cascade = CascadeType.ALL, orphanRemoval = true)
     private Appliance appliance;
 
 

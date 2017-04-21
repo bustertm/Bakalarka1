@@ -13,4 +13,5 @@ public interface UserService {
 
 
     public void addHousehold(User user, Household household, Appliance appliance);
+    public void updateHousehold(User user, Household household, Appliance appliance);
 }

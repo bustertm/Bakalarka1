@@ -42,19 +42,34 @@ public class UserServiceImpl implements UserService{
     public void saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
+        user.setAnalysed(false);
         Role userRole = roleRepository.findByRole("USER");
         user.setRole(userRole);
         userRepository.save(user);
 
+
     }
 
     public void addHousehold(User user, Household household, Appliance appliance){
+
         household.setUser(user);
         household.setAppliance(appliance);
+        appliance.setHousehold(household);
+        user.setHousehold(household);
+        household.setAppliance(appliance);
+        user.setAnalysed(true);
+        appliance.setHousehold(household);
         householdRepository.save(household);
         applianceRepository.save(appliance);
 
-
     }
+
+    public void updateHousehold(User user, Household household, Appliance appliance){
+
+        householdRepository.save(household);
+        applianceRepository.save(appliance);
+    }
+
+
 
 }
