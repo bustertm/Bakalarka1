@@ -4,6 +4,7 @@ import com.bakalarka1.model.Appliance;
 import com.bakalarka1.model.Household;
 import com.bakalarka1.model.User;
 import com.bakalarka1.model.consumption.Example_type;
+import com.bakalarka1.model.consumption.Monthly_consumption;
 import com.bakalarka1.service.AnalyseService;
 import com.bakalarka1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
@@ -32,6 +36,8 @@ public class UserController {
 
     @Autowired
     private AnalyseService analyseService;
+
+
 
 
 
@@ -79,9 +85,11 @@ public class UserController {
 
 
     @RequestMapping(value = "/analyza", method = RequestMethod.POST)
-    public ModelAndView add_household(@Valid Household household,@Valid Appliance appliance, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
+    public String add_household(@ModelAttribute("household") Household household,
+                                final RedirectAttributes redirectAttributes, @Valid Appliance appliance, BindingResult bindingResult) {
 
+        ModelAndView modelAndView = new ModelAndView();
+       // MW_analyse.clear();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
 
@@ -108,11 +116,44 @@ public class UserController {
             modelAndView.setViewName("analyza");
         }
 
-        List<Example_type> matches=analyseService.getBestExample(household,appliance);
+        Example_type match=analyseService.getBestExample(household,appliance);
       //  analyseService.findConsumptions(matches);        //return funkcie getBestExample vrati idcka pre funkciu findConsumptions
 
-        modelAndView.addObject(analyseService.findConsumptions(matches));
+        //   List<Monthly_consumption> monthly_consumptions_list = analyseService.findConsumptions(matches);
+
+        // modelAndView.addObject(analyseService.findConsumptions(matches));
+        redirectAttributes.addFlashAttribute("household",household);
+        redirectAttributes.addFlashAttribute("consumption_example",match);
+        redirectAttributes.addFlashAttribute("appliance",appliance);
+
+        return "redirect:/analyza_view";
+
+    }
+
+
+    @RequestMapping(value = "/analyza_view", method = RequestMethod.GET)
+    public ModelAndView show_consumptions(@ModelAttribute("household") Household household, @ModelAttribute("appliance") Appliance appliance, @ModelAttribute("consumption_example")Example_type example_type, BindingResult bindingResult) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("analyza_view");
+        }
+        modelAndView.addObject(household);
+        modelAndView.addObject(appliance);
+
+        List<Monthly_consumption> monthly_consumptions_list = analyseService.findConsumptions(example_type);
+        modelAndView.addObject("list",monthly_consumptions_list);
+        modelAndView.setViewName("analyza_view");
+
+        userService.printSomething(household,monthly_consumptions_list);
 
         return modelAndView;
+
     }
+
+
+
+
+
+
 }

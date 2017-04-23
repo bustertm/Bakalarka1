@@ -2,9 +2,11 @@ package com.bakalarka1.service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 import com.bakalarka1.model.Appliance;
 import com.bakalarka1.model.Household;
+import com.bakalarka1.model.consumption.Monthly_consumption;
 import com.bakalarka1.repository.ApplianceRepository;
 import com.bakalarka1.repository.HouseholdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,11 @@ public class UserServiceImpl implements UserService{
 
         householdRepository.save(household);
         applianceRepository.save(appliance);
+    }
+
+    public void printSomething(Household household, List<Monthly_consumption> monthly_consumption){
+        System.out.println("Spotreba domacnosti je "+ household.getOverall()+ " a predpokladana spotreba je "+monthly_consumption.get(0).getOverall());
+        System.out.println("Spotreba domacnosti je "+ household.getOverall()+ " a predpokladana spotreba je "+monthly_consumption.get(0).getOverall());
     }
 
 

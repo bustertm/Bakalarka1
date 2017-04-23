@@ -3,7 +3,6 @@ html,body{
     font-family: 'Source Sans Pro', sans-serif;
     -webkit-font-smoothing: antialiased;
 
-
 }
 
 #grad1 {
@@ -15,13 +14,6 @@ html,body{
     background: linear-gradient(#478A2D, #DAF291); /* Standard syntax (must be last) */
 }
 
-.form-horizontal{
-    padding-top: 5%;
-}
-.form-group{
-    padding-top: 10px;
-}
-
-.reg-blok{
-    font-size: medium;
+h1{
+    text-align: center;
 }

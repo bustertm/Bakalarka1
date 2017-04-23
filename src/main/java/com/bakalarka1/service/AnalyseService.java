@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface AnalyseService {
 
-    public List<Example_type> getBestExample(Household household, Appliance appliance);
-    public List<Monthly_consumption> findConsumptions(List<Example_type> matches);
+    public Example_type getBestExample(Household household, Appliance appliance);
+    public List<Monthly_consumption> findConsumptions(Example_type match);
 }

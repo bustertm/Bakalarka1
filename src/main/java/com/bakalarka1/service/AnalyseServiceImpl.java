@@ -34,7 +34,7 @@ public class AnalyseServiceImpl implements AnalyseService{
 
 
 
-    public List<Example_type> getBestExample(Household household, Appliance appliance){
+    public Example_type getBestExample(Household household, Appliance appliance){
 
 
         int mismatch=0;
@@ -114,20 +114,20 @@ public class AnalyseServiceImpl implements AnalyseService{
 
 
         if(bestDiffID!=null){
-            finalIDs.add(0,bestDiffID);
-            return finalIDs;
+           // finalIDs.add(0,bestDiffID);
+            return bestDiffID;
         }
 
-        return matches;
+        return matches.get(0);
 
     }
 
-    public List<Monthly_consumption> findConsumptions(List<Example_type> matches){
+    public List<Monthly_consumption> findConsumptions(Example_type match){
 
        // List<Monthly_consumption> ex = new ArrayList<>();
 
        // ex=example_consumptionRepository.findByType(matches.get(0));
-        return example_consumptionRepository.findMonthConsumption(matches.get(0));
+        return example_consumptionRepository.findMonthConsumption(match);
 
 
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <link rel="icon" type="image/png" href="pic/favicon-32x32.png" sizes="32x32" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600&amp;subset=latin-ext" rel="stylesheet"/>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{css/analyza_view.css}" rel="stylesheet"/>
+
+
+</head>
+
+
+
+<body id="grad1">
+<h1 class="text-center">Výsledok analýzy</h1>
+
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Mesiac v roku</th>
+        <th th:if="${appliance.oven>0}">Sporák</th>
+        <th th:if="${appliance.dishwasher>0}">Umývačka</th>
+        <th th:if="${appliance.fridge>0}">Chladnička</th>
+        <th th:if="${appliance.microwave>0}">Mikrovlnka</th>
+        <th th:if="${appliance.washingmachine>0}">Práčka</th>
+        <th th:if="${appliance.dryer>0}">Sušička</th>
+        <th th:if="${appliance.boiler>0}">Bojler</th>
+        <th th:if="${appliance.aircondition>0}">Klimatizácia</th>
+        <th th:if="${appliance.yakuza>0}">Vírivka</th>
+        <th>Celková spotreba</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="house : ${list}">
+        <td th:switch="${house.months}">
+            <p th:case="1">Január</p>
+            <p th:case="2">Február</p>
+            <p th:case="3">Marec</p>
+            <p th:case="4">Apríl</p>
+            <p th:case="5">Máj</p>
+            <p th:case="6">Jún</p>
+            <p th:case="7">Júl</p>
+            <p th:case="8">August</p>
+            <p th:case="9">September</p>
+            <p th:case="10">Október</p>
+            <p th:case="11">November</p>
+            <p th:case="12">December</p>
+            <p th:case="*">Chyba</p>
+        </td>
+        <td th:if="${appliance.oven>0}" th:text="${#numbers.formatDecimal(house.oven,1,2)}+' kW'"></td>
+        <td th:if="${appliance.dishwasher>0}" th:text="${#numbers.formatDecimal(house.dishwasher,1,2)}+' kW'"></td>
+        <td th:if="${appliance.fridge>0}" th:text="${#numbers.formatDecimal(house.fridge,1,2)}+' kW'"></td>
+        <td th:if="${appliance.microwave>0}" th:text="${#numbers.formatDecimal(house.microwave,1,2)}+' kW'"></td>
+        <td th:if="${appliance.washingmachine>0}" th:text="${#numbers.formatDecimal(house.washingmachine,1,2)}+' kW'"></td>
+        <td th:if="${appliance.dryer>0}" th:text="${#numbers.formatDecimal(house.dryer,1,2)}+' kW'"></td>
+        <td th:if="${appliance.boiler>0}" th:text="${#numbers.formatDecimal(house.boiler,1,2)}+' kW'"></td>
+        <td th:if="${appliance.aircondition>0}" th:text="${#numbers.formatDecimal(house.aircondition,1,2)}+' kW'"></td>
+        <td th:if="${appliance.yakuza>0}" th:text="${#numbers.formatDecimal(house.yakuza,1,2)}+' kW'"></td>
+        <td th:text="${#numbers.formatDecimal(house.overall,1,2)}+' kW'"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+
+
+
+</body>
+
+<script th:src="@{js/jquery-3.1.1.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+
+</html>
