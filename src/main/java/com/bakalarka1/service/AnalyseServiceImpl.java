@@ -2,9 +2,8 @@ package com.bakalarka1.service;
 
 import com.bakalarka1.model.Appliance;
 import com.bakalarka1.model.Household;
-import com.bakalarka1.model.consumption.Example_consumption;
 import com.bakalarka1.model.consumption.Example_type;
-import com.bakalarka1.model.consumption.Finded_example;
+import com.bakalarka1.model.consumption.Monthly_consumption;
 import com.bakalarka1.repository.ApplianceRepository;
 import com.bakalarka1.repository.Example_consumptionRepository;
 import com.bakalarka1.repository.Example_typeRepository;
@@ -13,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Martin on 19.04.2017.
@@ -125,12 +122,15 @@ public class AnalyseServiceImpl implements AnalyseService{
 
     }
 
-    public void findConsumptions(List<Example_type> matches){
-        List<Example_consumption> ex = new ArrayList<>();
-        Example_type pici= matches.get(0);
-        ex=example_consumptionRepository.findByType(matches.get(0));
+    public List<Monthly_consumption> findConsumptions(List<Example_type> matches){
 
-        System.out.println("Tu mame toto "+ex.get(0).getDate() +"  " +ex.get(0).getOven());
+       // List<Monthly_consumption> ex = new ArrayList<>();
+
+       // ex=example_consumptionRepository.findByType(matches.get(0));
+        return example_consumptionRepository.findMonthConsumption(matches.get(0));
+
+
+
 
     }
 }

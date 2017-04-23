@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -108,9 +109,9 @@ public class UserController {
         }
 
         List<Example_type> matches=analyseService.getBestExample(household,appliance);
-        analyseService.findConsumptions(matches);        //return funkcie getBestExample vrati idcka pre funkciu findConsumptions
+      //  analyseService.findConsumptions(matches);        //return funkcie getBestExample vrati idcka pre funkciu findConsumptions
 
-
+        modelAndView.addObject(analyseService.findConsumptions(matches));
 
         return modelAndView;
     }
