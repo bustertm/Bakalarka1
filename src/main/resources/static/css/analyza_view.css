@@ -2,18 +2,90 @@ html,body{
 
     font-family: 'Source Sans Pro', sans-serif;
     -webkit-font-smoothing: antialiased;
+    font-size: medium;
+    background: url('../pic/analyse_background.jpg')no-repeat center center fixed;
+
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
 
 }
 
-#grad1 {
-    height: 100%;
-    background: #478A2D; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#478A2D, #DAF291); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#478A2D, #DAF291); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#478A2D, #DAF291); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#478A2D, #DAF291); /* Standard syntax (must be last) */
-}
+/*#grad1 {*/
+    /*height: 100%;*/
+    /*background: #478A2D; !* For browsers that do not support gradients *!*/
+    /*background: -webkit-linear-gradient(#478A2D, #DAF291); !* For Safari 5.1 to 6.0 *!*/
+    /*background: -o-linear-gradient(#478A2D, #DAF291); !* For Opera 11.1 to 12.0 *!*/
+    /*background: -moz-linear-gradient(#478A2D, #DAF291); !* For Firefox 3.6 to 15 *!*/
+    /*background: linear-gradient(#478A2D, #DAF291); !* Standard syntax (must be last) *!*/
+/*}*/
 
 h1{
     text-align: center;
+    font-weight: 700;
+    color: black;
+}
+
+.tabulka{
+    margin: 2% auto;
+    height: auto;
+    width: auto;
+    font-size: 18px;
+    text-align:center;
+    border: 3px solid #0f0f0f;
+    color: black;
+    background: rgba(149,191,164,0.8);
+    font-weight: 600;
+
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: 1px solid #000000;
+}
+
+th{
+    text-align: center;
+}
+
+#lastRow{
+    border-top: 3px solid black;
+}
+
+#firstRow{
+    border-top: 3px solid black;
+}
+
+#outer{
+    width:100%;
+
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+    /* W3C */
+    display:box;
+    box-pack:center;
+    box-align:center;
+}
+
+
+.tlacidla{
+    width: auto;
+    font-weight: 600;
+    text-align: center;
+    border-width: 2px;
+    border-color: gray;
+    margin: 10px auto;
 }

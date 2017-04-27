@@ -1,5 +1,7 @@
 package com.bakalarka1.model.consumption;
 
+import java.sql.Date;
+
 /**
  * Created by Martin on 21.04.2017.
  */
@@ -38,6 +40,7 @@ public class Monthly_consumption {
     public Monthly_consumption(Example_type household_id, Integer months, Double oven, Double dishwasher, Double fridge, Double microwave, Double boiler, Double dryer, Double washingmachine, Double yakuza, Double aircondition, Double overall) {
         this.household_id = household_id;
         this.months = months;
+
         this.oven = oven;
         this.dishwasher = dishwasher;
         this.fridge = fridge;
@@ -49,6 +52,8 @@ public class Monthly_consumption {
         this.aircondition = aircondition;
         this.overall = overall;
     }
+
+
 
     public Example_type getHousehold_id() {
         return household_id;

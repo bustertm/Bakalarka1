@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="pic/favicon-32x32.png" sizes="32x32" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600&amp;subset=latin-ext" rel="stylesheet"/>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{css/investicia.css}" rel="stylesheet"/>
+
+</head>
+
+
+<body>
+
+
+<div th:object="${investition}">
+    <ul class="policko2"><h2>Odporúčaná investícia</h2>
+        <li  th:text="'Odporúčaný inštalovaný výkon:   '+*{vykon}+' kWp'"></li>
+        <li  th:text="'Počet panelov:   '+*{pocet_panelov}"></li>
+        <li  th:text="'Efektivita spotreby vyrobenej energie:   '+*{#numbers.formatDecimal(effectivity,1,1)}+'%'"></li>
+        <li  th:text="'Odhadovaná cena systému(komplet):   '+*{#numbers.formatDecimal(cena,1,2)}+'€'"></li>
+        <li  th:text="'Návratnosť investície(roky):   '+*{#numbers.formatDecimal(navratnost,1,1)}"></li>
+    </ul>
+</div>
+
+
+<!--<div th:object="${configuration}">
+    <ul class="list-group">Odporúčaná investícia
+        <li class="list-group-item" th:text="'Typ panelu: '+*{FVE_panel_type}"></li>
+        <li class="list-group-item" th:text="'Počet panelov: '+*{pocet_panelov}"></li>
+        <li class="list-group-item" th:text="'Efektivita spotreby vyrobenej energie: '*{effectivity}+'%'"></li>
+        <li class="list-group-item" th:text="*'Odhadovaná cena systému(komplet): '+{cena}+'€'"></li>
+        <li class="list-group-item" th:text="*'Návratnosť investície(roky): '+{navratnost}"></li>
+    </ul>
+</div>-->
+
+
+        <div id="outer">
+            <a class="tlacidla btn btn-lg btn-default" href="index.html">Späť na hlavnú stránku</a>
+        </div>
+
+
+
+</body>
+</html>

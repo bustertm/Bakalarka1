@@ -34,4 +34,33 @@ public class Location {
     public Set<Household> getHouseholds() {
         return this.households;
     }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNazov() {
+        return nazov;
+    }
+
+    public void setNazov(String nazov) {
+        this.nazov = nazov;
+    }
+
+    public double getSun_intensity() {
+        return sun_intensity;
+    }
+
+    public void setSun_intensity(double sun_intensity) {
+        this.sun_intensity = sun_intensity;
+    }
+
+    public void setHouseholds(Set<Household> households) {
+        this.households = households;
+    }
 }

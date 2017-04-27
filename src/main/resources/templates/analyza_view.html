@@ -10,6 +10,7 @@
     <link th:href="@{css/analyza_view.css}" rel="stylesheet"/>
 
 
+
 </head>
 
 
@@ -19,9 +20,9 @@
 
 
 
-<table class="table table-bordered">
+<table class="table tabulka table-bordered table-responsive">
     <thead>
-    <tr>
+    <tr id="firstRow">
         <th>Mesiac v roku</th>
         <th th:if="${appliance.oven>0}">Sporák</th>
         <th th:if="${appliance.dishwasher>0}">Umývačka</th>
@@ -63,9 +64,30 @@
         <td th:if="${appliance.yakuza>0}" th:text="${#numbers.formatDecimal(house.yakuza,1,2)}+' kW'"></td>
         <td th:text="${#numbers.formatDecimal(house.overall,1,2)}+' kW'"></td>
     </tr>
+    <tr id="lastRow">
+        <td>Súčet</td>
+        <td th:if="${household.oven_overall>0}" th:text="${#numbers.formatDecimal(household.oven_overall,1,2)}+' kW'"></td>
+        <td th:if="${household.dishwasher_overall>0}" th:text="${#numbers.formatDecimal(household.dishwasher_overall,1,2)}+' kW'"></td>
+        <td th:if="${household.fridge_overall>0}" th:text="${#numbers.formatDecimal(household.fridge_overall,1,2)}+' kW'"></td>
+        <td th:if="${household.microwave_overall>0}" th:text="${#numbers.formatDecimal(household.microwave_overall,1,2)}+' kW'"></td>
+        <td th:if="${household.washingmachine_overall>0}" th:text="${#numbers.formatDecimal(household.washingmachine_overall,1,2)}+' kW'"></td>
+        <td th:if="${household.dryer_overall>0}" th:text="${#numbers.formatDecimal(household.dryer_overall,1,2)}+' kW'"></td>
+        <td th:if="${household.boiler_overall>0}" th:text="${#numbers.formatDecimal(household.boiler_overall,1,2)}+' kW'"></td>
+        <td th:if="${household.aircondition_overall>0}" th:text="${#numbers.formatDecimal(household.aircondition_overall,1,2)}+' kW'"></td>
+        <td th:if="${household.yakuza_overall>0}" th:text="${#numbers.formatDecimal(household.yakuza_overall,1,2)}+' kW'"></td>
+        <td th:text="${#numbers.formatDecimal(household.counted_overall,1,2)}+' kW'"></td>
+    </tr>
+
+
     </tbody>
 
 </table>
+
+<div id="outer">
+    <a class="tlacidla btn btn-lg btn-default" href="index.html">Späť na hlavnú stránku</a>
+</div>
+
+
 
 
 

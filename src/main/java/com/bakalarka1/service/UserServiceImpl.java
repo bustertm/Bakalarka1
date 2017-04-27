@@ -66,7 +66,22 @@ public class UserServiceImpl implements UserService{
 
     }
 
+    public void saveHousehold(Household household){     //pre ucely investicie
+        householdRepository.save(household);
+    }
+
     public void updateHousehold(User user, Household household, Appliance appliance){
+
+        household.setFridge_overall(0.0);
+        household.setOven_overall(0.0);
+        household.setAircondition_overall(0.0);
+        household.setBoiler_overall(0.0);
+        household.setDishwasher_overall(0.0);
+        household.setDryer_overall(0.0);
+        household.setWashingmachine_overall(0.0);
+        household.setYakuza_overall(0.0);
+        household.setMicrowave_overall(0.0);
+        household.setCounted_overall(0.0);
 
         householdRepository.save(household);
         applianceRepository.save(appliance);

@@ -15,24 +15,50 @@
 
 <img class="img-responsive map" th:src="@{/pic/solar_map.png}" alt="Solar Map"/>
 
-<div class="form-group text-center col-md-3">
 
-    <label for="location_select">Výber množstva slnečného žiarenia</label>
 
-    <select class="form-control" id="location_select">
-        <option>1000</option>
-        <option>1100</option>
-        <option>1150</option>
-        <option>1200</option>
-        <option>1300</option>
-    </select>
-</div>
+<div class="form-group col-md-3 policko">
+    <form autocomplete="off" action="#" th:action="@{/investicia}"
+          th:method="post" class="form-vertical col-sm-12" role="form">
 
-<div class="form-group text-center">
-    <div>
-        <a class="tlacidla btn btn-lg btn-default" href="index.html">Naspäť</a>
-        <button type="submit" class=" tlacidla btn btn-lg btn-success">Ulož</button>
+
+    <div   class="form-group ">
+        <label  th:for="${locat.id}">Výber množstva slnečného žiarenia</label>
+
+        <select th:field="${locat.id}" class="form-control" >
+            <option th:each="loc : ${locations}" th:value="${loc.id}" th:text="${loc.sun_intensity}"></option>
+        </select>
     </div>
+
+
+
+
+    <div class="form-group text-center">
+        <div>
+            <a class="tlacidla btn btn-lg btn-default" href="index.html">Naspäť</a>
+            <button type="submit" class=" tlacidla btn btn-lg btn-success">Ulož</button>
+        </div>
+    </div>
+
+        <!--<input th:field="${household.id}" type="hidden">
+        <input th:field="${household.overall}" type="hidden">
+        <input th:field="${household.residents}" type="hidden">
+        <input th:field="${household.house_type}" type="hidden">
+        <input th:field="${household.heat_type}" type="hidden">
+        <input th:field="${household.oven_overall}" type="hidden">
+        <input th:field="${household.dishwasher_overall}" type="hidden">
+        <input th:field="${household.fridge_overall}" type="hidden">
+        <input th:field="${household.microwave_overall}" type="hidden">
+        <input th:field="${household.washingmachine_overall}" type="hidden">
+        <input th:field="${household.dryer_overall}" type="hidden">
+        <input th:field="${household.boiler_overall}" type="hidden">
+        <input th:field="${household.aircondition_overall}" type="hidden">
+        <input th:field="${household.yakuza_overall}" type="hidden">
+        <input th:field="${household.counted_overall}" type="hidden">
+        <input th:field="${household.example_id}" type="hidden">
+        <input th:field="${household.appliance}" type="hidden">-->
+
+    </form>
 </div>
 
 </body>

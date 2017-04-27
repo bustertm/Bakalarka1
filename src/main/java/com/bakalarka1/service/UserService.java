@@ -16,6 +16,7 @@ public interface UserService {
 
 
     public void addHousehold(User user, Household household, Appliance appliance);
+    public void saveHousehold(Household household);
     public void updateHousehold(User user, Household household, Appliance appliance);
     public void printSomething(Household household, List<Monthly_consumption> monthly_consumption);
 }

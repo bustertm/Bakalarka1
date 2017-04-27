@@ -48,12 +48,7 @@ public class HomeController {
 
 
 
-    @RequestMapping(value={"/investicia"}, method = RequestMethod.GET)
-    public ModelAndView investicia(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("investicia");
-        return modelAndView;
-    }
+
 
 
    // @RequestMapping("/analyza")

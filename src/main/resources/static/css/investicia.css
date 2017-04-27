@@ -20,9 +20,63 @@ html,body{
     text-align: center;
     color: white;
     font-size: 20px;
+    width:600px;
     background: RGBA(0,0,0,0.7);
     padding: 20px;
-    margin: 15px 30%;
+    margin: 0 30% 20px 30%;
     min-width: 20%;
     max-width: 40%;
+    border-radius:10px;
+}
+
+#outer{
+    width:100%;
+
+    /* Firefox */
+    display:-moz-box;
+    -moz-box-pack:center;
+    -moz-box-align:center;
+
+    /* Safari and Chrome */
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+
+    /* W3C */
+    display:box;
+    box-pack:center;
+    box-align:center;
+}
+
+.tlacidla{
+    width: auto;
+    font-weight: 600;
+    text-align: center;
+    border-width: 2px;
+    border-color: gray;
+    margin: 10px auto;
+}
+
+.policko2{
+
+    width:600px;
+    margin: 20% auto auto auto;
+    background: RGBA(0,0,0,0.7);
+    font-size:x-large;
+    padding: 20px;
+    border-radius: 12px;
+    max-width:80%
+}
+
+ul h2{
+    color:rgb(192, 226, 7);
+    text-align:center;
+    margin-top: 5px;
+}
+
+li{
+    margin:5px 20px;
+    text-align:left;
+    color:white;
+    list-style: none;
 }

@@ -137,4 +137,20 @@ public class Example_consumption {
     public double getOverall() {
         return overall;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getDishwasher() {
+        return dishwasher;
+    }
+
+    public void setDishwasher(double dishwasher) {
+        this.dishwasher = dishwasher;
+    }
 }

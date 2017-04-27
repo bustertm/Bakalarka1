@@ -114,22 +114,120 @@ public class AnalyseServiceImpl implements AnalyseService{
 
 
         if(bestDiffID!=null){
-           // finalIDs.add(0,bestDiffID);
+            // finalIDs.add(0,bestDiffID);
+            household.setExample_id(bestDiffID);
+            householdRepository.save(household);
             return bestDiffID;
         }
 
+        household.setExample_id(matches.get(0));
+        householdRepository.save(household);
         return matches.get(0);
 
     }
 
-    public List<Monthly_consumption> findConsumptions(Example_type match){
+    public List<Monthly_consumption> findConsumptions(Example_type match, Appliance appliance, Household household){
 
-       // List<Monthly_consumption> ex = new ArrayList<>();
+        List<Monthly_consumption> monthly_con_list = new ArrayList<>();
 
-       // ex=example_consumptionRepository.findByType(matches.get(0));
-        return example_consumptionRepository.findMonthConsumption(match);
+        monthly_con_list=example_consumptionRepository.findMonthConsumption(match);
+        household.setCounted_overall(0.0);
+
+        for (Monthly_consumption item:monthly_con_list)         //uprava spotreby podla pocetnosti spotrebicov, v databaze je jednotkovy vzor
+        {
+            setCustomOverall(item,household,appliance);
+        }
+
+        householdRepository.save(household);
+        return monthly_con_list;
+
+    }
 
 
+    private void setCustomOverall(Monthly_consumption item, Household household, Appliance appliance){
+
+        if(appliance.getOven()>0){
+            item.setOverall(item.getOverall()-item.getOven());     //odcitam z celkovej spotreby
+            item.setOven(appliance.getOven()*item.getOven());           //prenasobim spotrebu pocetnostou spotrebica
+            item.setOverall(item.getOverall()+item.getOven());     //pricitam naspat do celkovej prenasobenu spotrebu
+
+            household.setOven_overall(household.getOven_overall()+item.getOven());      //do databazy ukladam celkovu za rok
+        }
+        else item.setOverall(item.getOverall()-item.getOven());         //odcitam spotrebic z celkovej kedze ho nemame
+
+        if(appliance.getFridge()>0){
+            item.setOverall(item.getOverall()-item.getFridge());
+            item.setFridge(appliance.getFridge()*item.getFridge());
+            item.setOverall(item.getOverall()+item.getFridge());
+
+            household.setFridge_overall(household.getFridge_overall()+item.getFridge());
+        }
+        else item.setOverall(item.getOverall()-item.getFridge());
+
+        if(appliance.getDishwasher()>0){
+            item.setOverall(item.getOverall()-item.getDishwasher());
+            item.setDishwasher(appliance.getDishwasher()*item.getDishwasher());
+            item.setOverall(item.getOverall()+item.getDishwasher());
+
+            household.setDishwasher_overall(household.getDishwasher_overall()+item.getDishwasher());
+        }
+        else item.setOverall(item.getOverall()-item.getDishwasher());
+
+        if(appliance.getMicrowave()>0){
+            item.setOverall(item.getOverall()-item.getMicrowave());
+            item.setMicrowave(appliance.getMicrowave()*item.getMicrowave());
+            item.setOverall(item.getOverall()+item.getMicrowave());
+
+            household.setMicrowave_overall(household.getMicrowave_overall()+item.getMicrowave());
+        }
+        else item.setOverall(item.getOverall()-item.getMicrowave());
+
+        if(appliance.getWashingmachine()>0){
+            item.setOverall(item.getOverall()-item.getWashingmachine());
+            item.setWashingmachine(appliance.getWashingmachine()*item.getWashingmachine());
+            item.setOverall(item.getOverall()+item.getWashingmachine());
+
+            household.setWashingmachine_overall(household.getWashingmachine_overall()+item.getWashingmachine());
+        }
+        else item.setOverall(item.getOverall()-item.getWashingmachine());
+
+        if(appliance.getDryer()>0){
+            item.setOverall(item.getOverall()-item.getDryer());
+            item.setDryer(appliance.getDryer()*item.getDryer());
+            item.setOverall(item.getOverall()+item.getDryer());
+
+            household.setDryer_overall(household.getDryer_overall()+item.getDryer());
+        }
+        else item.setOverall(item.getOverall()-item.getDryer());
+
+        if(appliance.getBoiler()>0){
+            item.setOverall(item.getOverall()-item.getBoiler());
+            item.setBoiler(appliance.getBoiler()*item.getBoiler());
+            item.setOverall(item.getOverall()+item.getBoiler());
+
+            household.setBoiler_overall(household.getBoiler_overall()+item.getBoiler());
+        }
+        else item.setOverall(item.getOverall()-item.getBoiler());
+
+        if(appliance.getAircondition()>0){
+            item.setOverall(item.getOverall()-item.getAircondition());
+            item.setAircondition(appliance.getAircondition()*item.getAircondition());
+            item.setOverall(item.getOverall()+item.getAircondition());
+
+            household.setAircondition_overall(household.getAircondition_overall()+item.getAircondition());
+        }
+        else item.setOverall(item.getOverall()-item.getAircondition());
+
+        if(appliance.getYakuza()>0){
+            item.setOverall(item.getOverall()-item.getYakuza());
+            item.setYakuza(appliance.getYakuza()*item.getYakuza());
+            item.setOverall(item.getOverall()+item.getYakuza());
+
+            household.setYakuza_overall(household.getYakuza_overall()+item.getYakuza());
+        }
+        else item.setOverall(item.getOverall()-item.getYakuza());
+
+        household.setCounted_overall(household.getCounted_overall()+item.getOverall());     //celkova spotreba za rok z mesacnych
 
 
     }

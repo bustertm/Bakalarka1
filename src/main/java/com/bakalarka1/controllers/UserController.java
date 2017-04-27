@@ -5,6 +5,9 @@ import com.bakalarka1.model.Household;
 import com.bakalarka1.model.User;
 import com.bakalarka1.model.consumption.Example_type;
 import com.bakalarka1.model.consumption.Monthly_consumption;
+import com.bakalarka1.model.production.FVE_configurations;
+import com.bakalarka1.model.production.FVE_production;
+import com.bakalarka1.service.AdminService;
 import com.bakalarka1.service.AnalyseService;
 import com.bakalarka1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +38,10 @@ public class UserController {
     private UserService userService;
 
     @Autowired
+    private AdminService adminService;
+
+    @Autowired
     private AnalyseService analyseService;
-
-
 
 
 
@@ -50,106 +54,35 @@ public class UserController {
     }
 
 
+    @RequestMapping(value={"/admin/fve"}, method = RequestMethod.GET)
+    public ModelAndView fve_form(){
+        ModelAndView modelAndView = new ModelAndView();
+        FVE_configurations fve_configuration = new FVE_configurations();
+        modelAndView.addObject("fve_configuration",fve_configuration);
+        modelAndView.setViewName("fve_admin");
+        return modelAndView;
+    }
 
-
-    @RequestMapping(value="/analyza", method = RequestMethod.GET)
-    public ModelAndView analyza(){
+    @RequestMapping(value={"/admin/fve"}, method = RequestMethod.POST)
+    public ModelAndView fve_add(@Valid FVE_configurations fve_configuration, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView();
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-
-        Household household;
-        Appliance appliance;
-
-        if(user.getAnalysed()){
-            household=user.getHousehold();
-            appliance=household.getAppliance();
-            modelAndView.addObject("successMessage", "Vasa domacnost je uz nastavena, vase hodnoty budu nahradene novymi");
+        if (bindingResult.hasErrors()) {
+            modelAndView.setViewName("index");
         }
-
-        else{
-            household = new Household();
-            appliance = new Appliance();
+        else {
+            adminService.add_fve_configuration(fve_configuration);
+            modelAndView.addObject("fve_configuration",new FVE_configurations());
+            modelAndView.setViewName("fve_admin");
         }
-
-        modelAndView.addObject("user", user);
-        modelAndView.addObject("household", household);
-        modelAndView.addObject("appliance", appliance);
-        modelAndView.setViewName("analyza");
-
-
 
         return modelAndView;
     }
 
 
-    @RequestMapping(value = "/analyza", method = RequestMethod.POST)
-    public String add_household(@ModelAttribute("household") Household household,
-                                final RedirectAttributes redirectAttributes, @Valid Appliance appliance, BindingResult bindingResult) {
-
-        ModelAndView modelAndView = new ModelAndView();
-       // MW_analyse.clear();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
 
 
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("analyza");
-        }
-        else if(user.getAnalysed()) {
 
-            userService.updateHousehold(user, household, appliance);
-            modelAndView.addObject("successMessage", "Analyza je aktualizovana");
-            modelAndView.addObject("user", user);
-            modelAndView.addObject("household", household);
-            modelAndView.addObject("appliance", appliance);
-            modelAndView.setViewName("analyza");
-        }
-
-        else{
-            userService.addHousehold(user,household,appliance);
-            modelAndView.addObject("successMessage", "Analyza je ulozena");
-            modelAndView.addObject("user", user);
-            modelAndView.addObject("appliance", appliance);
-            modelAndView.addObject("user", household);
-            modelAndView.setViewName("analyza");
-        }
-
-        Example_type match=analyseService.getBestExample(household,appliance);
-      //  analyseService.findConsumptions(matches);        //return funkcie getBestExample vrati idcka pre funkciu findConsumptions
-
-        //   List<Monthly_consumption> monthly_consumptions_list = analyseService.findConsumptions(matches);
-
-        // modelAndView.addObject(analyseService.findConsumptions(matches));
-        redirectAttributes.addFlashAttribute("household",household);
-        redirectAttributes.addFlashAttribute("consumption_example",match);
-        redirectAttributes.addFlashAttribute("appliance",appliance);
-
-        return "redirect:/analyza_view";
-
-    }
-
-
-    @RequestMapping(value = "/analyza_view", method = RequestMethod.GET)
-    public ModelAndView show_consumptions(@ModelAttribute("household") Household household, @ModelAttribute("appliance") Appliance appliance, @ModelAttribute("consumption_example")Example_type example_type, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
-
-        if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("analyza_view");
-        }
-        modelAndView.addObject(household);
-        modelAndView.addObject(appliance);
-
-        List<Monthly_consumption> monthly_consumptions_list = analyseService.findConsumptions(example_type);
-        modelAndView.addObject("list",monthly_consumptions_list);
-        modelAndView.setViewName("analyza_view");
-
-        userService.printSomething(household,monthly_consumptions_list);
-
-        return modelAndView;
-
-    }
 
 
 

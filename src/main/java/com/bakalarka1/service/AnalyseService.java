@@ -10,8 +10,10 @@ import java.util.List;
 /**
  * Created by Martin on 19.04.2017.
  */
+
 public interface AnalyseService {
 
     public Example_type getBestExample(Household household, Appliance appliance);
-    public List<Monthly_consumption> findConsumptions(Example_type match);
+    public List<Monthly_consumption> findConsumptions(Example_type match,Appliance appliance, Household household);
+
 }

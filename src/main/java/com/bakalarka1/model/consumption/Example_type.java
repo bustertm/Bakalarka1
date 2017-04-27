@@ -1,5 +1,7 @@
 package com.bakalarka1.model.consumption;
 
+import com.bakalarka1.model.Household;
+
 import javax.persistence.*;
 import java.sql.Blob;
 import java.util.List;
@@ -18,6 +20,9 @@ public class Example_type {
 
     @OneToMany(mappedBy = "type")
     private List<Example_consumption> example_consumptions;
+
+    @OneToMany(mappedBy = "example_id")         //v household tabulke uzivatela
+    private List<Household> households;
 
     @Column(name="oven")
     private Integer oven;
@@ -50,7 +55,21 @@ public class Example_type {
         this.overall = overall;
     }
 
+    public List<Example_consumption> getExample_consumptions() {
+        return example_consumptions;
+    }
 
+    public void setExample_consumptions(List<Example_consumption> example_consumptions) {
+        this.example_consumptions = example_consumptions;
+    }
+
+    public List<Household> getHouseholds() {
+        return households;
+    }
+
+    public void setHouseholds(List<Household> households) {
+        this.households = households;
+    }
 
     public int getId() {
         return id;
