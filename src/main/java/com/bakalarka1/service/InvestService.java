@@ -16,6 +16,6 @@ public interface InvestService {
     public Location findByID(int id);
     public void addLocation(Household household, Location location);
     public Investition findBestProduction(Household household) throws ParseException;
-    public Investition findInvestition(Investition investition, Household household);
+    public Investition findInvestition(Double energy_price, Double dotacia, Household household, Investition investition);
 }
 

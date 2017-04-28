@@ -158,6 +158,7 @@ public class FunctionsController {
         Location location = new Location();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
+        Investition investition= new Investition();
 
         if(!user.getAnalysed()){
             return new ModelAndView("redirect:/");
@@ -167,7 +168,7 @@ public class FunctionsController {
       //  modelAndView.addObject("location",location);        //prazdna lokacia do ktorej sa nahra vybrata
         modelAndView.addObject("locations",locations);
         modelAndView.addObject("locat",location);
-
+        modelAndView.addObject("investition",investition);
 
         modelAndView.setViewName("investicia");
 
@@ -181,11 +182,13 @@ public class FunctionsController {
     }
 
     @RequestMapping(value={"/investicia"}, method = RequestMethod.POST)
-    public String vypocet_investicie(final RedirectAttributes redirectAttributes, @ModelAttribute("locat")Location location, @ModelAttribute Investition investition, BindingResult bindingResult) throws ParseException {
+    public String vypocet_investicie( final RedirectAttributes redirectAttributes, @ModelAttribute("locat")Location location, @ModelAttribute("investition") Investition investition, BindingResult bindingResult) throws ParseException {
 
         ModelAndView modelAndView = new ModelAndView();
+        Double dotacia, energy_price;
 
-
+        energy_price=investition.getEnergy_price();
+        dotacia=investition.getDotacia();
 
 
         if (bindingResult.hasErrors()) {
@@ -197,10 +200,11 @@ public class FunctionsController {
         Household household=user.getHousehold();
 
         investService.addLocation(household,location);
-        investition=investService.findInvestition(investService.findBestProduction(household),household);
+        investition=investService.findInvestition(energy_price, dotacia,household, investService.findBestProduction(household));
 
 
         redirectAttributes.addFlashAttribute("investition",investition);
+
 
 
         return "redirect:/invest_view";

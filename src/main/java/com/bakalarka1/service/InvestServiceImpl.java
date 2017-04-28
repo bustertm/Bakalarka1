@@ -77,7 +77,7 @@ public class InvestServiceImpl implements InvestService{
         Integer i=0, pocetPanelov=0;
         Double efektivita=0.0;
         boolean founded=false;
-        Double vyroba_sum=0.0, prebytok_sum=0.0;
+        Double vyroba_sum=0.0, prebytok_sum=0.0, prev_prebytok=0.0, prev_vyroba=0.0;
         double radiation=household.getLocation().getSun_intensity();
         radiation/=1000;    //hodnoty od 1000 do 1300 takze budem moct vyrobu prenasobit 1 az 1.3 krat
 
@@ -96,8 +96,8 @@ public class InvestServiceImpl implements InvestService{
 
                 if(i%7==0){
 
-                    rozdiel=spotreba-vyroba*(vykon/1.1*radiation);      //1.1 lebo data s ktorymi porovnavam su z 1100 radiacie
-                    vyroba_sum+=vyroba*(vykon/1.1*radiation);
+                    rozdiel=spotreba-vyroba*(vykon*radiation);      //1.1 lebo data s ktorymi porovnavam su z 1100 radiacie
+                    vyroba_sum+=vyroba*(vykon*radiation);
                     if(rozdiel<0) prebytok_sum+= -rozdiel;           //ak sme vyrobili viac ako spotrebovali
                     vyroba=spotreba=0.0;
                  //   efektivity[k]=rozdiel;
@@ -113,14 +113,18 @@ public class InvestServiceImpl implements InvestService{
             if (celok<0) {
 
                 founded=true;
-                efektivita=(1-(prebytok_sum/vyroba_sum))*100;
-                System.out.println("Spravna velkost instalacie je: "+(vykon-0.5)+"kW");
+                efektivita=(1-(prev_prebytok/prev_vyroba))*100;
+                System.out.println("Spravna velkost instalacie je: "+(vykon)+"kW");
+                pocetPanelov--;    //beriem predchadzajuci
             }
 
             else{
                 System.out.println("Vysledny rozdiel vyroby a spotreby je: "+celok);
                 celok=0.0;
+                prev_prebytok=prebytok_sum;     //chcem si pamatat predchadzajuce
+                prev_vyroba=vyroba_sum;
                 prebytok_sum=vyroba_sum=0.0;
+
             }
 
 
@@ -147,7 +151,7 @@ public class InvestServiceImpl implements InvestService{
         return investition;
     }
 
-    public Investition findInvestition(Investition investition, Household household){
+    public Investition findInvestition(Double energy_price, Double dotacia, Household household, Investition investition){
 
 
         List<FVE_production> productionYear=productionRepository.getAllProductions();       //celorocna vyroba
@@ -162,17 +166,21 @@ public class InvestServiceImpl implements InvestService{
         price+=fve_configurations.getFVE_panel_price()*pocetPanelov;        //cena za panely
         price+=fve_configurations.getBattery_price()*batteryNumber;
         price+=fve_configurations.getInvertor_charger_price();
-        price+=fve_configurations.getOther_price();
+        price+=fve_configurations.getOther_price()-dotacia;
 
-
+        investition.setVykon_baterie(batteryNumber);
+        investition.setDotacia(dotacia);
+        investition.setEnergy_price(energy_price);
 
 
         for (FVE_production item:productionYear
              ) {
-            celkova_vyroba+=item.getProduction()*(pocetPanelov/4);      //produkcia sa udava na instalovany kWp a panel ma 0.25kWp
+            celkova_vyroba+=item.getProduction()*((household.getLocation().getSun_intensity()/1000)*investition.getVykon());      //produkcia sa udava na instalovany kWp a panel ma 0.25kWp
         }
 
-        investition.setNavratnost(price/((household.getCounted_overall()-celkova_vyroba)*0.15));
+        celkova_vyroba*=investition.getEffectivity()/100;
+
+        investition.setNavratnost(price/(celkova_vyroba*energy_price));
         investition.setCena(price);
 
 

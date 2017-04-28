@@ -8,11 +8,38 @@ public class Investition {
     private double cena;        //cena instalacie
     private FVE_configurations configuration_id;
     private int pocet_panelov;
+    private int vykon_baterie;
     private double vykon;       //kWp instalovaneho vykonu
     private double navratnost;     //dni
     private double effectivity;     //efektivita spotreby vyrobenej energie
+    private double dotacia;
+    private double energy_price;
 
     public Investition(){}
+
+    public double getDotacia() {
+        return dotacia;
+    }
+
+    public void setDotacia(double dotacia) {
+        this.dotacia = dotacia;
+    }
+
+    public double getEnergy_price() {
+        return energy_price;
+    }
+
+    public void setEnergy_price(double energy_price) {
+        this.energy_price = energy_price;
+    }
+
+    public int getVykon_baterie() {
+        return vykon_baterie;
+    }
+
+    public void setVykon_baterie(int vykon_baterie) {
+        this.vykon_baterie = vykon_baterie;
+    }
 
     public Investition(FVE_configurations configuration_id){
         this.configuration_id=configuration_id;
