@@ -5,11 +5,11 @@
 
 	<groupId>com.bakalarka1</groupId>
 	<artifactId>alpha</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>ALPHA version</version>
 	<packaging>jar</packaging>
 
 	<name>alpha</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Spring Boot project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -62,6 +62,9 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+
+
+
 
 
 

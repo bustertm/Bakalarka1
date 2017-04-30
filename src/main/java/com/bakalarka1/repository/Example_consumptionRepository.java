@@ -57,7 +57,7 @@ public interface Example_consumptionRepository extends JpaRepository<Example_con
   /*  @Query(value = "SELECT ec FROM example_consumption ec WHERE ec.household_id = ?1", nativeQuery = true)
     List<Example_consumption> findByHousehold(Integer household_id);
 
-       /*       @Query(value="select e.household_id, sum(e.overall) as found from example_consumption e " +
+   /*           @Query(value="select e.household_id, sum(e.overall) as found from example_consumption e " +
             "where e.household_id in :ids "+
             "group by e.household_id"
                       , nativeQuery = true)

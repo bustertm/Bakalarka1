@@ -10,7 +10,7 @@ import java.sql.Date;
  * Created by Martin on 25.04.2017.
  */
 @Entity
-@Table(name = "vyroba")
+@Table(name = "production")
 public class FVE_production {
 
     @Id
@@ -20,7 +20,7 @@ public class FVE_production {
     @Column(name = "datum")
     private java.util.Date date;
 
-    @Column(name = "vyroba")
+    @Column(name = "production")
     private double production;
 
     @Column(name = "elektraren_id")

@@ -68,6 +68,16 @@ html,body{
     max-width:80%
 }
 
+.profil{
+    width:600px;
+    margin: 20px auto auto auto;
+    background: RGBA(0,0,0,0.7);
+    font-size:x-large;
+    padding: 20px;
+    border-radius: 12px;
+    max-width:80%
+}
+
 ul h2{
     color:rgb(192, 226, 7);
     text-align:center;

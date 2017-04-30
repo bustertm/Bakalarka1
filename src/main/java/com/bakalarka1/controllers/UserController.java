@@ -2,6 +2,7 @@ package com.bakalarka1.controllers;
 
 import com.bakalarka1.model.Appliance;
 import com.bakalarka1.model.Household;
+import com.bakalarka1.model.Location;
 import com.bakalarka1.model.User;
 import com.bakalarka1.model.consumption.Example_type;
 import com.bakalarka1.model.consumption.Monthly_consumption;
@@ -50,6 +51,36 @@ public class UserController {
     public ModelAndView logged(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
+        return modelAndView;
+    }
+
+
+    @RequestMapping(value={"/profil"}, method = RequestMethod.GET)
+    public ModelAndView profil(){
+        ModelAndView modelAndView = new ModelAndView();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findUserByEmail(auth.getName());
+        Household household;
+        Appliance appliance;
+
+        if(!user.getAnalysed()){
+            household=new Household();
+            appliance = new Appliance();
+        }
+
+        else{
+            household= user.getHousehold();
+            appliance = household.getAppliance();
+        }
+
+
+
+        modelAndView.addObject("user",user);
+        modelAndView.addObject("household",household);
+        modelAndView.addObject("appliance",appliance);
+
+
+        modelAndView.setViewName("profil");
         return modelAndView;
     }
 

@@ -44,7 +44,6 @@
                         <li class="active"><a href="#">Domov</a></li>
                         <li><a href="#about">O projekte</a></li>
                         <li><a href="#contact">Kontakt</a></li>
-
                     </ul>
                 </div>
 
@@ -56,7 +55,7 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="Heslo"/>
 
                         <div align="center" th:if="${param.error}">
-                            <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+                            <p style="font-size: 20; color: #FF1C19;">Zadané meno, alebo heslo je nesprávne</p>
                         </div>
 
                         <button class="btn btn-success" name="Submit"  type="Submit" th:text="Login"></button>

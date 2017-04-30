@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="pic/favicon-32x32.png" sizes="32x32" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600&amp;subset=latin-ext" rel="stylesheet"/>
+    <link th:href="@{css/bootstrap.css}" rel="stylesheet"/>
+    <link th:href="@{css/investicia.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div>
+    <ul class="profil"><h2>Informácie o používateľovi</h2>
+        <li  th:text="'Meno:            '+${user.name}"></li>
+        <li  th:text="'Priezvisko:      '+${user.lastName}"></li>
+        <li  th:if="${user.analysed}" th:text="'Domácnosť je analyzovaná.'"></li>
+        <li  th:if="${!user.analysed}" th:text="'Domácnosť nie je analyzovaná.'"></li>
+    </ul>
+    <ul th:if="${user.analysed}" class="profil"><h2>Informácie o domácnosti</h2>
+        <li  th:text="'Typ domácnosti:      '+${household.house_type}"></li>
+        <li  th:text="'Počet členov:        '+${household.residents}"></li>
+        <li  th:text="'Typ kúrenia:         '+${household.heat_type}"></li>
+        <li th:if="${household.oven_overall>0}"         th:text="'Ročná spotreba sporáku:           '+${#numbers.formatDecimal(household.oven_overall,1,2)}+' kW'"></li>
+        <li th:if="${household.dishwasher_overall>0}"   th:text="'Ročná spotreba umývačky:          '+${#numbers.formatDecimal(household.dishwasher_overall,1,2)}+' kW'"></li>
+        <li th:if="${household.fridge_overall>0}"       th:text="'Ročná spotreba chladničky:        '+${#numbers.formatDecimal(household.fridge_overall,1,2)}+' kW'"></li>
+        <li th:if="${household.microwave_overall>0}"        th:text="'Ročná spotreba mirkovlnky:        '+${#numbers.formatDecimal(household.microwave_overall,1,2)}+' kW'"></li>
+        <li th:if="${household.washingmachine_overall>0}"th:text="'Ročná spotreba práčky:            '+${#numbers.formatDecimal(household.washingmachine_overall,1,2)}+' kW'"></li>
+        <li th:if="${household.dryer_overall>0}"        th:text="'Ročná spotreba sušičky:           '+${#numbers.formatDecimal(household.dryer_overall,1,2)}+' kW'"></li>
+        <li th:if="${household.boiler_overall>0}"       th:text="'Ročná spotreba bojleru:           '+${#numbers.formatDecimal(household.boiler_overall,1,2)}+' kW'"></li>
+        <li th:if="${household.aircondition_overall>0}" th:text="'Ročná spotreba klimatizácie:      '+${#numbers.formatDecimal(household.aircondition_overall,1,2)}+' kW'"></li>
+        <li th:if="${household.yakuza_overall>0}"       th:text="'Ročná spotreba vírivky:           '+${#numbers.formatDecimal(household.yakuza_overall,1,2)}+' kW'"></li>
+        <li th:text="'Celková ročná spotreba:       '+${#numbers.formatDecimal(household.counted_overall,1,2)}+' kW'"></li>
+    </ul>
+    <ul th:if="${user.analysed}" class="profil"><h2>Informácie o spotrebičoch</h2>
+        <li th:if="${appliance.oven>0}"         th:text="'Počet chladničiek:    '+${appliance.oven}"></li>
+        <li th:if="${appliance.dishwasher>0}"   th:text="'Počet umývačiek:      '+${appliance.dishwasher}"></li>
+        <li th:if="${appliance.fridge>0}"       th:text="'Počet chladničiek:    '+${appliance.fridge}"></li>
+    <li th:if="${appliance.microwave>0}"        th:text="'Počet mikrovlniek:    '+${appliance.microwave}"></li>
+        <li th:if="${appliance.washingmachine>0}"th:text="'Počet práčiek:        '+${appliance.washingmachine}"></li>
+        <li th:if="${appliance.dryer>0}"        th:text="'Počet sušičiek:       '+${appliance.dryer}"></li>
+        <li th:if="${appliance.boiler>0}"       th:text="'Počet bojlerov:       '+${appliance.boiler}"></li>
+        <li th:if="${appliance.aircondition>0}" th:text="'Klimatizácia:         '+${appliance.aircondition}"></li>
+        <li th:if="${appliance.yakuza>0}"       th:text="'Vírivka:              '+${appliance.yakuza}"></li>
+    </ul>
+</div>
+
+
+<div id="outer">
+    <a class="tlacidla btn btn-lg btn-default" href="index.html">Späť na hlavnú stránku</a>
+</div>
+
+</body>
+</html>

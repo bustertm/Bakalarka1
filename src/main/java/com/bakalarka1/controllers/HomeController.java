@@ -48,21 +48,6 @@ public class HomeController {
 
 
 
-
-
-
-   // @RequestMapping("/analyza")
-   // public String analyza(){
-  //      return "analyza";
-  //  }
-
-   /* @RequestMapping(value="/analyza", method = RequestMethod.GET)
-        public ModelAndView analyza(){
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("analyza");
-            return modelAndView;
-    }*/
-
     /*******************************************************************/
 
     @RequestMapping(value="/registracia", method = RequestMethod.GET)
