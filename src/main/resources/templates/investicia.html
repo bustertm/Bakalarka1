@@ -26,17 +26,17 @@
         <label  th:for="${locat.id}">Výber množstva slnečného žiarenia</label>
 
         <select th:field="${locat.id}" class="form-control" >
-            <option th:each="loc : ${locations}" th:value="${loc.id}" th:text="${loc.sun_intensity}"></option>
+            <option th:each="loc : ${locations}" th:value="${loc.id}" th:text="${loc.sunIntensity}"></option>
         </select>
 
         <div>
-            <label  th:for="${investition.energy_price}">Cena za 1kWh v €</label>
-            <input class="form-control" step="0.01" min="0" type="number" th:field="${investition.energy_price}"/>
+            <label  th:for="${investment.energy_price}">Cena za 1kWh v €</label>
+            <input class="form-control" step="0.01" min="0" type="number" th:field="${investment.energy_price}"/>
         </div>
 
         <div>
-            <label  th:for="${investition.dotacia}">Veľkosť dotácie (eur)</label>
-            <input class="form-control" max="3350" min="0" type="number" th:field="${investition.dotacia}" />
+            <label  th:for="${investment.dotacia}">Veľkosť dotácie (eur)</label>
+            <input class="form-control" max="3350" min="0" type="number" th:field="${investment.dotacia}" />
             <a href="http://zelenadomacnostiam.sk/sk/domacnosti/podporovane-zariadenia/fotovolticke-panely/" target="_blank">Zisti dotáciu</a>
         </div>
 

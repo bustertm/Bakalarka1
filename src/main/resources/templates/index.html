@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta name="description" content="Bakalarska praca - FIIT STU"/>
+    <meta name="author" content="Martin Dieska"/>
 
 
-    <title>Carousel Template for Bootstrap</title>
+    <title>Spotreba energie v domácnosti</title>
 
     <!-- Bootstrap core CSS -->
     <link th:href="@{css/bootstrap.min.css}" rel="stylesheet"/>
@@ -42,8 +42,11 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Domov</a></li>
-                        <li><a href="#about">O projekte</a></li>
-                        <li><a href="#contact">Kontakt</a></li>
+                        <li><a href="#" data-toggle="popover" title="Postup" data-placement="bottom" data-html="true"
+                               data-content="<ol><li>Začnite registráciou</li><li>Vykonajte analýzu</li><li>Vypočítajte investíciu</li></ol>">Pomoc</a></li>
+
+                        <li><a href="#" data-toggle="popover" data-placement="bottom" data-html="true"
+                               data-content="<p><b>Autor:</b> Martin Dieška</p><p><b>Projekt:</b> Bakalárska práca - FIIT STU</p>">O projekte</a></li>
                     </ul>
                 </div>
 
@@ -156,11 +159,11 @@
 
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">Používateľský účet. <span class="text-muted">Aby ste mali všetko bezpečne uložené.</span></h2>
+            <p class="lead">Registráciou získate používateľský účet, ktorý uchováva vaše údaje o domácnosti a preto ich budete vypĺnať len raz. Taktiež máte prehľad o účte vďaka profilovému zobrazeniu.</p>
         </div>
-        <div class="col-md-5">
-            <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image"/>
+        <div class="col-md-4">
+            <img style="max-width: 100%; height: auto;" class="featurette-image img-responsive center-block" src="pic/register_home.png"/>
         </div>
     </div>
 
@@ -168,23 +171,23 @@
 
     <div class="row featurette">
         <div class="col-md-7 col-md-push-5">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+            <h2 class="featurette-heading">Analýza domácnosti, hneď a teraz. <span class="text-muted">Všetko je automatizované a na nič nečakáte.</span></h2>
+            <p class="lead">Jediné čo potrebujete je vyplniť údaje o domácnosti, čo netrvá ani minútu a máte prehľadnú analýzu spotreby pre vaše spotrebiče.</p>
         </div>
-        <div class="col-md-5 col-md-pull-7">
-            <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image"/>
+        <div class="col-md-4 col-md-pull-7">
+            <img style="max-width: 100%; height: auto;" class="featurette-image img-responsive center-block" src="pic/analyse_home.png"/>
         </div>
     </div>
 
     <hr class="featurette-divider"/>
 
     <div class="row featurette">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <div class="col-md-6">
+            <h2 class="featurette-heading">Fotovoltika pre domácnosť. <span class="text-muted">Investovať, či neinvestovať?</span></h2>
+            <p class="lead">Stačí vyplniť tri dodatočné údaje o vašej domácnosti a my sa pokúsime čo najlepšie opdporučiť investíciu do fotovltického systému.</p>
         </div>
-        <div class="col-md-5">
-            <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image"/>
+        <div class="col-md-6">
+            <img style="max-width: 100%; height: auto;" class="featurette-image img-responsive center-block" src="pic/invest_home.png"/>
         </div>
     </div>
 
@@ -207,7 +210,13 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script th:src="@{js/jquery-3.1.1.min.js}"></script>
 
+
 <script th:src="@{js/bootstrap.min.js}"></script>
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="popover"]').popover();
+    });
+</script>
 
 </body>
 </html>
